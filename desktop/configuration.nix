@@ -16,6 +16,12 @@
       ./software/plasma.nix
     ];
 
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.xiaoxi = import ./home.nix;
+  };
+  
   nix = {
     package = pkgs.nixUnstable;
     extraOptions = ''
