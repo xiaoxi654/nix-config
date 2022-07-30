@@ -6,7 +6,7 @@
   };
   
   outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations."xiaoxi-desktop-nixos" = nixpkgs.lib.nixosSystem {
+    nixosConfigurations."xiaoxi-nixos-desktop" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./desktop/configuration.nix
