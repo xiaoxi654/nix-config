@@ -2,7 +2,7 @@
 
 {
   programs.git = {
-    enabble = true;
+    enable = true;
     userEmail = "xiaoxi654@outlook.com";
     userName = "Yoshida Kanae";
     signing = {
