@@ -2,9 +2,9 @@
 
 {
   home.packages = with pkgs; [
-    file
+    google-chrome
     neofetch
-    rnix-lsp
+    tdesktop
     element-desktop
     teamspeak_client
   ];
