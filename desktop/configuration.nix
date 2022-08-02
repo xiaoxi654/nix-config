@@ -8,13 +8,7 @@
   imports =
     [
       ./hardware-configuration.nix
-      ./hardware/nvidia.nix
-      ./software/pipewire.nix
-      ./software/packages.nix
-      ./software/steam.nix
-      ./software/fcitx5.nix
-      ./software/plasma.nix
-      ./software/fonts.nix
+      ./software
     ];
 
   home-manager = {

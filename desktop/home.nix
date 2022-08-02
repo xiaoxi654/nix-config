@@ -2,9 +2,7 @@
 
 {
   imports = [
-    ./home/vscode.nix
-    ./home/packages.nix
-    ./home/git.nix
+    ./home
   ];
 
   # Home Manager needs a bit of information about you and the

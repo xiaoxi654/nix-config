@@ -8,6 +8,9 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.opengl.enable = true;
+
   fileSystems."/" = {
       device = "/dev/disk/by-uuid/1e688d45-0299-4972-adb7-545b9c3802e8";
       fsType = "btrfs";
