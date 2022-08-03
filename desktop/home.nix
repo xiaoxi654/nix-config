@@ -5,21 +5,38 @@
     ./home
   ];
 
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
+  programs = {
+    mtr.enable = true;
+  };
+
+  home.sessionVariables = {
+    SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/resign.ssh";
+    SOPS_GPG_EXEC = "${pkgs.writeShellApplication {
+      name = "gpg";
+      text = ''
+        ${pkgs.resign}/bin/resign -u ${resign-socket} "$@"
+      '';
+    }}/bin/gpg";
+  };
+
+  systemd.user = {
+    targets.sway-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
+    services.resign = {
+      Install.WantedBy = [ "graphical-session.target" ];
+      Unit.PartOf = [ "graphical-session.target" ];
+      Unit.After = [ "graphical-session.target" ];
+      Service = {
+        Environment = [
+          "PATH=${pkgs.lib.makeBinPath [ pkgs.pinentry-gtk2 ]}"
+          "GTK2_RC_FILES=${config.home.sessionVariables.GTK2_RC_FILES}"
+        ];
+        ExecStart = "${pkgs.resign}/bin/resign-agent --grpc %t/resign.grpc --ssh %t/resign.ssh";
+      };
+    };
+  };
+
   home.username = "xiaoxi";
   home.homeDirectory = "/home/xiaoxi";
 
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "22.05";
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  home.stateVersion = "22.05";  # DON'T TOUCH IT
 }

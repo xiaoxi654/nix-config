@@ -76,5 +76,4 @@
   };
 
   system.stateVersion = "22.05"; # DON'T TOUCH IT
-
 }

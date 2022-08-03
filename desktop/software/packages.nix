@@ -10,7 +10,6 @@
     screen
     htop
     file
-    rnix-lsp
     nix-top
   ];
 }

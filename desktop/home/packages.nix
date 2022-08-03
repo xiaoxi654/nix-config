@@ -7,5 +7,12 @@
     tdesktop
     element-desktop
     teamspeak_client
+    rnix-lsp
+    osu-lazer
   ];
+
+  programs = {
+    mtr.enable = true;
+  };
+
 }
