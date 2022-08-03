@@ -2,15 +2,9 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ system, config, pkgs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./software
-    ];
-
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -46,6 +40,14 @@
     networkmanager.enable = true;
   };
 
+  programs = {
+    mtr.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+  };
+
   time.timeZone = "Asia/Shanghai";
 
   i18n = {
@@ -65,14 +67,6 @@
     ];
     description = "Kanae Yoshida";
     home = "/home/xiaoxi";
-  };
-
-  programs = {
-    mtr.enable = true;
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
   };
 
   system.stateVersion = "22.05"; # DON'T TOUCH IT

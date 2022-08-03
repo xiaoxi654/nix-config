@@ -7,19 +7,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    resign = {
-      url = "github:NickCao/resign";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
   
-  outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations."xiaoxi-nixos-desktop" = nixpkgs.lib.nixosSystem {
+  outputs = inputs@{ self, nixpkgs, ... }: {
+    nixosConfigurations."xiaoxi-nixos-desktop" = import ./desktop {
       system = "x86_64-linux";
-      modules = [
-        ./desktop/configuration.nix
-        inputs.home-manager.nixosModules.home-manager
-      ];
+      inherit self nixpkgs inputs;
     };
   };
 }
