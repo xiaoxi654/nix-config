@@ -9,5 +9,6 @@
     teamspeak_client
     rnix-lsp
     osu-lazer
+    polymc
   ];
 }
