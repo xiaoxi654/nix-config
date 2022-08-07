@@ -22,17 +22,20 @@
       ];
   };
 
-  boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
+  boot = {
+    loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
+      };
+      grub = {
+        devices = [ "nodev" ];
+        efiSupport = true;
+        enable = true;
+        useOSProber = true;
+      };
     };
-    grub = {
-      devices = [ "nodev" ];
-      efiSupport = true;
-      enable = true;
-      useOSProber = true;
-    };
+    kernelPackages = pkgs.linuxPackages_zen;
   };
 
   networking = {
