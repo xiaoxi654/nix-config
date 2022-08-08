@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  fonts= {
+  fonts = {
     enableDefaultFonts = false;
     fonts = with pkgs; [
       noto-fonts
