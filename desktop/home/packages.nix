@@ -6,6 +6,7 @@
     neofetch
     tdesktop
     element-desktop
+    discord
     teamspeak_client
     rnix-lsp
     osu-lazer

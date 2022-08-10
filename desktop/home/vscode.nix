@@ -7,6 +7,7 @@
     extensions = with pkgs.vscode-extensions; [
       jnoortheen.nix-ide
       ms-ceintl.vscode-language-pack-zh-hans
+      ms-vsliveshare.vsliveshare
     ];
     userSettings = {
       "window.dialogStyle" = "custom";
