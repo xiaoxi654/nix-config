@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   home.packages = with pkgs; [
@@ -10,5 +10,7 @@
     rnix-lsp
     osu-lazer
     polymc
+    nur.repos.linyinfeng.icalingua-plus-plus
+    nur.repos.linyinfeng.wemeet
   ];
 }

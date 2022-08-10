@@ -8,5 +8,6 @@ nixpkgs.lib.nixosSystem {
     ./hardware-configuration.nix
     ./software
     inputs.home-manager.nixosModules.home-manager
+    inputs.nur.nixosModules.nur
   ];
 }

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ system, config, pkgs, ... }:
+{ system, config, pkgs, inputs, ... }:
 
 {
   home-manager = {
@@ -11,6 +11,10 @@
     users.xiaoxi = import ./home.nix;
   };
   
+  nixpkgs.overlays = [
+    inputs.nur.overlay
+  ];
+
   nix = {
     package = pkgs.nixUnstable;
     extraOptions = ''

@@ -3,9 +3,9 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    vscode-server.url = "github:msteen/nixos-vscode-server";
-    polymc = {
-      url = "github:PolyMC/PolyMC";
+    nur.url = "github:nix-community/NUR";
+    vscode-server = {
+      url = "github:msteen/nixos-vscode-server";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
@@ -18,7 +18,7 @@
     nixosConfigurations = {
       "xiaoxi-nixos-desktop" = import ./desktop {
         system = "x86_64-linux";
-        inherit self nixpkgs inputs;
+        inherit nixpkgs inputs;
       };
       wsl = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
