@@ -16,17 +16,8 @@
   
   outputs = inputs@{ self, nixpkgs, ... }: {
     nixosConfigurations = {
-      "xiaoxi-nixos-desktop" = import ./desktop {
-        system = "x86_64-linux";
-        inherit nixpkgs inputs;
-      };
-      wsl = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./wsl/configuration.nix
-          inputs.vscode-server.nixosModule
-        ];
-      };
+      desktop = import ./desktop { system = "x86_64-linux"; inherit nixpkgs inputs; };
+      wsl = import ./wsl { system = "x86_64-linux"; inherit nixpkgs inputs; };
     };
   };
 }

@@ -9,7 +9,7 @@
     curl
     screen
     htop
-    git
+    gitMinimal
     file
     socat
     nix-top

@@ -45,6 +45,10 @@ in
     extraOptions = ''
     experimental-features = nix-command flakes
     '';
+    settings.substituters = [
+      "https://mirrors.ustc.edu.cn/nix-channels/store"
+      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+    ];
   };
 
   system.stateVersion = "22.11"; # DON'T TOUCH THIS
