@@ -9,5 +9,10 @@
       signByDefault = true;
       key = "088507A7";
     };
+    extraConfig = {
+      pull = {
+        rebase = true;
+      };
+    };
   };
 }
