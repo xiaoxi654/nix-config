@@ -8,6 +8,7 @@
       jnoortheen.nix-ide
       ms-ceintl.vscode-language-pack-zh-hans
       ms-vsliveshare.vsliveshare
+      eamodio.gitlens
     ];
     userSettings = {
       "window.dialogStyle" = "custom";

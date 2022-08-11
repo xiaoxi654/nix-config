@@ -2,7 +2,7 @@
   description = "Xiaoxi654's NixOS Flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nur.url = "github:nix-community/NUR";
     vscode-server = {
       url = "github:msteen/nixos-vscode-server";
