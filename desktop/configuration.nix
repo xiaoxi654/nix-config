@@ -10,7 +10,7 @@
     useUserPackages = true;
     users.xiaoxi = import ./home.nix;
   };
-  
+
   nixpkgs.overlays = [
     inputs.nur.overlay
   ];
@@ -18,15 +18,16 @@
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''
-    experimental-features = nix-command flakes
+      experimental-features = nix-command flakes
     '';
     settings.substituters = [
       "https://mirrors.ustc.edu.cn/nix-channels/store"
       "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-      ];
+    ];
   };
 
   boot = {
+    kernelPackages = pkgs.linuxPackages_zen;
     loader = {
       efi = {
         canTouchEfiVariables = true;
@@ -39,7 +40,6 @@
         useOSProber = true;
       };
     };
-    kernelPackages = pkgs.linuxPackages_zen;
   };
 
   networking = {
@@ -65,7 +65,7 @@
       "zh_CN.UTF-8/UTF-8"
     ];
   };
-  
+
   users.users.xiaoxi = {
     isNormalUser = true;
     extraGroups = [

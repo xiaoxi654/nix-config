@@ -13,7 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  
+
   outputs = inputs@{ self, nixpkgs, ... }: {
     nixosConfigurations = {
       desktop = import ./desktop { system = "x86_64-linux"; inherit nixpkgs inputs; };

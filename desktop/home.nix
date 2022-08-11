@@ -7,5 +7,5 @@
 
   home.username = "xiaoxi";
   home.homeDirectory = "/home/xiaoxi";
-  home.stateVersion = "22.05";  # DON'T TOUCH IT
+  home.stateVersion = "22.05"; # DON'T TOUCH IT
 }

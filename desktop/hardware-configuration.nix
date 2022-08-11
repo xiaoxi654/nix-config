@@ -12,21 +12,21 @@
   hardware.opengl.enable = true;
 
   fileSystems."/" = {
-      device = "/dev/disk/by-uuid/1e688d45-0299-4972-adb7-545b9c3802e8";
-      fsType = "btrfs";
-      options = [ "subvol=_subvolume/@" "compress-force=zstd" ];
-    };
+    device = "/dev/disk/by-uuid/1e688d45-0299-4972-adb7-545b9c3802e8";
+    fsType = "btrfs";
+    options = [ "subvol=_subvolume/@" "compress-force=zstd" ];
+  };
 
   fileSystems."/home" = {
-      device = "/dev/disk/by-uuid/1e688d45-0299-4972-adb7-545b9c3802e8";
-      fsType = "btrfs";
-      options = [ "subvol=_subvolume/@home" "compress-force=zstd" ];
-    };
+    device = "/dev/disk/by-uuid/1e688d45-0299-4972-adb7-545b9c3802e8";
+    fsType = "btrfs";
+    options = [ "subvol=_subvolume/@home" "compress-force=zstd" ];
+  };
 
   fileSystems."/boot/efi" = {
-      device = "/dev/disk/by-uuid/318F-915C";
-      fsType = "vfat";
-    };
+    device = "/dev/disk/by-uuid/318F-915C";
+    fsType = "vfat";
+  };
 
   swapDevices = [ ];
 

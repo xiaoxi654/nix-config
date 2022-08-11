@@ -29,7 +29,7 @@ in
       "zh_CN.UTF-8/UTF-8"
     ];
   };
-  
+
   programs = {
     gnupg.agent = {
       enable = true;
@@ -43,7 +43,7 @@ in
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''
-    experimental-features = nix-command flakes
+      experimental-features = nix-command flakes
     '';
     settings.substituters = [
       "https://mirrors.ustc.edu.cn/nix-channels/store"
