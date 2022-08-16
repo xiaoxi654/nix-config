@@ -4,6 +4,10 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nur.url = "github:nix-community/NUR";
+    xiaoxi-repo = {
+      url = "github:xiaoxi654/nix-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     vscode-server = {
       url = "github:msteen/nixos-vscode-server";
       inputs.nixpkgs.follows = "nixpkgs";

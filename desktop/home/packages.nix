@@ -9,8 +9,8 @@
     discord
     teamspeak_client
     rnix-lsp
-    osu-lazer
     polymc
+    osu-lazer-appimage
     nur.repos.linyinfeng.icalingua-plus-plus
     nur.repos.linyinfeng.wemeet
   ];

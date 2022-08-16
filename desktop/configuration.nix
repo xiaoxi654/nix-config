@@ -11,9 +11,13 @@
     users.xiaoxi = import ./home.nix;
   };
 
-  nixpkgs.overlays = [
-    inputs.nur.overlay
-  ];
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [
+      inputs.nur.overlay
+      (import "${inputs.xiaoxi-repo}/overlay.nix")
+    ];
+  };
 
   nix = {
     package = pkgs.nixFlakes;
