@@ -7,6 +7,7 @@
     tdesktop
     element-desktop
     discord
+    spotify
     teamspeak_client
     rnix-lsp
     polymc
