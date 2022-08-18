@@ -51,6 +51,13 @@
     networkmanager.enable = true;
   };
 
+  services.openssh = {
+    enable = true;
+    passwordAuthentication = false;
+    kbdInteractiveAuthentication = false;
+    permitRootLogin = "no";
+  };
+
   programs = {
     mtr.enable = true;
     gnupg.agent = {
