@@ -5,5 +5,6 @@
     ./vscode.nix
     ./autorandr.nix
     ./i3.nix
+    ./alacritty.nix
   ];
 }
