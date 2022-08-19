@@ -1,6 +1,12 @@
 { pkgs, lib, config, ... }:
 
 {
+  systemd.user.targets.tray = {
+    Unit = {
+      Description = "Home Manager System Tray";
+      Requires = [ "graphical-session-pre.target" ];
+    };
+  };
   xsession.windowManager.i3 = {
     enable = true;
     config = {
@@ -28,4 +34,5 @@
         };
     };
   };
+  services.pasystray.enable = true;
 }
