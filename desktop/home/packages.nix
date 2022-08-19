@@ -5,6 +5,7 @@
     google-chrome
     neofetch
     tdesktop
+    obs-studio
     element-desktop
     discord
     spotify-tui
