@@ -13,7 +13,6 @@
       modifier = "Mod4";
       terminal = "alacritty";
       startup = [
-        { command = "fcitx5"; notification = false; }
         { command = "autorandr -l desktop"; }
         { command = "feh --bg-scale ~/Pictures/Wallpaper/murasame.png"; }
       ];
