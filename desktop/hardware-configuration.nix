@@ -9,7 +9,13 @@
   boot.extraModulePackages = [ ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.opengl.enable = true;
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/1e688d45-0299-4972-adb7-545b9c3802e8";

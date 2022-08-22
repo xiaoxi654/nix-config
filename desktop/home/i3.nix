@@ -15,6 +15,7 @@
       startup = [
         { command = "autorandr -l desktop"; }
         { command = "feh --bg-scale ~/Pictures/Wallpaper/murasame.png"; }
+        { command = "fcitx5"; notification = false; }
       ];
       keybindings = 
         let

@@ -6,5 +6,6 @@
     # ./plasma.nix
     ./i3.nix
     ./steam.nix
+    ./fcitx5.nix
   ];
 }

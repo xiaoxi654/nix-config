@@ -2,7 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    google-chrome
     neofetch
     tdesktop
     obs-studio
@@ -12,8 +11,13 @@
     teamspeak_client
     rnix-lsp
     polymc
+    lutris
     osu-lazer-appimage
     nur.repos.linyinfeng.icalingua-plus-plus
     nur.repos.linyinfeng.wemeet
   ];
+  programs.chromium = {
+    enable = true;
+    package = pkgs.google-chrome;
+  };
 }

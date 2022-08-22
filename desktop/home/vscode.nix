@@ -11,8 +11,6 @@
       eamodio.gitlens
     ];
     userSettings = {
-      "window.dialogStyle" = "custom";
-      "window.titleBarStyle" = "custom";
       "nix.enableLanguageServer" = true;
     };
   };
