@@ -27,7 +27,36 @@
 
   networking = {
     hostName = "xiaoxi-nixos-storage";
-    networkmanager.enable = true;
+    interfaces = {
+      ens18 = {
+        ipv4.addresses = [
+          {
+            address = "10.0.1.110";
+            prefixLength = 24;
+          }
+        ];
+        ipv6.addresses = [
+          {
+            address = "2a01:4f9:4a:286f:1:110:0:1";
+            prefixLength = 80;
+          }
+        ];
+      };
+    };
+    defaultGateway = {
+      address = "10.0.1.1";
+      interface = "ens18";
+    };
+    defaultGateway6 = {
+      address = "2a01:4f9:4a:286f:1::1";
+      interface = "ens18";
+    };
+    nameservers = [
+      "1.1.1.1"
+      "1.0.0.1"
+      "2606:4700:4700::1111"
+      "2606:4700:4700::1001"
+    ];
     firewall = {
       allowedTCPPorts = [
         22
@@ -41,7 +70,7 @@
       # allowedUDPPorts = [ ... ];
     };
   };
-  
+
   time.timeZone = "Asia/Shanghai";
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -50,7 +79,6 @@
     isNormalUser = true;
     extraGroups = [
       "wheel"
-      "networkmanager"
     ];
     hashedPassword = "$6$E9btBHOwH0EhtQNp$q0GW7U/73qJ3fJqMtaP07nVOSzDyYLueIYezQ2KzhxdZJwrPA1xZKNnj.Y8zkyw.qaZpOmTLOuXvlfS3B8V84/";
     openssh.authorizedKeys.keys = [
@@ -78,7 +106,7 @@
     kbdInteractiveAuthentication = false;
     listenAddresses = [
       {
-        addr = "[2a01:4f9:4a:286f:1:110::1]";
+        addr = "[::]";
         port = 22;
       }
       {
