@@ -37,19 +37,33 @@
         ];
         ipv6.addresses = [
           {
-            address = "2a01:4f9:4a:286f:1:110:0:1";
-            prefixLength = 80;
+            address = "2a01:4f9:4a:286f:1:110::1";
+            prefixLength = 96;
+          }
+        ];
+      };
+      ens19 = {
+        ipv4.addresses = [
+          {
+            address = "10.0.2.110";
+            prefixLength = 24;
+          }
+        ];
+        ipv6.addresses = [
+          {
+            address = "2605:6400:c6fe:110::1";
+            prefixLength = 64;
           }
         ];
       };
     };
     defaultGateway = {
-      address = "10.0.1.1";
-      interface = "ens18";
+      address = "10.0.2.1";
+      interface = "ens19";
     };
     defaultGateway6 = {
-      address = "2a01:4f9:4a:286f:1::1";
-      interface = "ens18";
+      address = "2605:6400:c6fe::1";
+      interface = "ens19";
     };
     nameservers = [
       "1.1.1.1"
@@ -79,6 +93,7 @@
     isNormalUser = true;
     extraGroups = [
       "wheel"
+      "transmission"
     ];
     hashedPassword = "$6$E9btBHOwH0EhtQNp$q0GW7U/73qJ3fJqMtaP07nVOSzDyYLueIYezQ2KzhxdZJwrPA1xZKNnj.Y8zkyw.qaZpOmTLOuXvlfS3B8V84/";
     openssh.authorizedKeys.keys = [
@@ -95,25 +110,35 @@
     wheelNeedsPassword = false;
   };
 
-  services.openssh = {
-    enable = true;
-    banner = ''
-      Welcone to Xiaoxi654's Storage Server
-      This server only accept public key authentication
-    '';
-    permitRootLogin = "no";
-    passwordAuthentication = false;
-    kbdInteractiveAuthentication = false;
-    listenAddresses = [
-      {
-        addr = "[::]";
-        port = 22;
-      }
-      {
-        addr = "0.0.0.0";
-        port = 21000;
-      }
-    ];
+  services = {
+    openssh = {
+      enable = true;
+      banner = ''
+        Welcone to Xiaoxi654's Storage Server
+        This server only accept public key authentication
+      '';
+      permitRootLogin = "no";
+      passwordAuthentication = false;
+      kbdInteractiveAuthentication = false;
+      listenAddresses = [
+        {
+          addr = "[::]";
+          port = 22;
+        }
+        {
+          addr = "0.0.0.0";
+          port = 21000;
+        }
+      ];
+    };
+    transmission = {
+      enable = true;
+      openPeerPorts = true;
+      openRPCPort = true;
+      rpc-port = 21001;
+      peer-port = 21020;
+      rpc-bind-address = "0.0.0.0";
+    };
   };
 
   system.stateVersion = "22.05"; # DON'T TOUCH IT

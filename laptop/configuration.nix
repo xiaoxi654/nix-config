@@ -35,7 +35,7 @@
     loader = {
       efi = {
         canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot/efi";
+        efiSysMountPoint = "/boot";
       };
       grub = {
         devices = [ "nodev" ];
@@ -49,6 +49,11 @@
   networking = {
     hostName = "xiaoxi-nixos-laptop";
     networkmanager.enable = true;
+    firewall = {
+      allowedTCPPorts = [
+        8000
+      ];
+    };
   };
 
   services.openssh = {
@@ -63,6 +68,7 @@
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
+      pinentryFlavor = "gnome3";
     };
   };
 
@@ -78,6 +84,12 @@
   };
 
   programs.light.enable = true;
+  programs.dconf.enable = true;
+  services.dbus.packages = [
+    pkgs.gnome.gnome-keyring
+    pkgs.gcr
+    pkgs.dconf
+  ];
 
   users.users.xiaoxi = {
     isNormalUser = true;

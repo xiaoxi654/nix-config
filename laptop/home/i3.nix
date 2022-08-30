@@ -15,6 +15,7 @@
       startup = [
         # { command = "feh --bg-scale ~/Pictures/Wallpaper/murasame.png"; }
         { command = "fcitx5"; notification = false; }
+        { command = "xrandr --display DP-4 --primary"; notification = false; }
       ];
       keybindings = 
         let

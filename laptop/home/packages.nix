@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     neofetch
+    rclone
     tdesktop
     obs-studio
     element-desktop

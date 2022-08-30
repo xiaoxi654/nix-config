@@ -41,6 +41,7 @@
           pasystray
           xss-lock
           feh
+          brightnessctl
           libsForQt5.qt5.qtgraphicaleffects # For SDDM Theme
         ];
       };
