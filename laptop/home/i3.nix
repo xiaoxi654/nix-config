@@ -34,6 +34,7 @@
         };
     };
   };
+
   services.picom = {
     enable = true;
     activeOpacity = 1.0;
@@ -56,6 +57,7 @@
       "90:class_g = 'Alacritty'"
     ];
   };
+
   services.flameshot = {
     enable = true;
     settings = {
@@ -64,6 +66,79 @@
       };
     };
   };
+
   services.network-manager-applet.enable = true;
   services.pasystray.enable = true;
+
+  programs.i3status = {
+    enable = true;
+    enableDefault = false;
+    general = {
+      colors = true;
+      color_good = "#88b090";
+      color_degraded = "#ccdc90";
+      color_bad = "#e89393";
+      interval = 1;
+    };
+    modules = {
+      "wireless wlp4s0" = {
+        position = 1;
+        settings = {
+          format_up = "W: %ip (%quality at %essid)";
+          format_down = "W: Disconnected";
+        };
+      };
+      "ethernet _first_" = {
+        position = 2;
+        settings = {
+          format_up = "E: %ip (%speed)";
+          format_down = "";
+        };
+      };
+      "battery all" = {
+        position = 3;
+        settings = {
+          format = "%status %percentage %remaining";
+          last_full_capacity = true;
+          low_threshold = 20;
+          threshold_type = "percentage";
+          hide_seconds = true;
+          status_chr = "CHR";
+          status_bat = "BAT";
+          status_full = "FUL";
+          status_unk = "UNK";
+        };
+      };
+      "load" = {
+        position = 4;
+        settings = {
+          format = "%1min";
+        };
+      };
+      "memory" = {
+        position = 5;
+        settings = {
+          format = "Avail: %available|%used/%total";
+          threshold_degraded = "1G";
+          format_degraded = "MEMORY < %available|%used/%total";
+        };
+      };
+      "volume master" = {
+        position = 6;
+        settings = {
+          format = "Audio: %volume";
+          format_muted = "Audio: Muted";
+          device = "default";
+          mixer = "Master";
+          mixer_idx = 0;
+        };
+      };
+      "tztime local" = {
+        position = 7;
+        settings = {
+          format = "%Y-%m-%d %H:%M:%S";
+        };
+      };
+    };
+  };
 }
