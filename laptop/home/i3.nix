@@ -15,13 +15,16 @@
       startup = [
         # { command = "feh --bg-scale ~/Pictures/Wallpaper/murasame.png"; }
         { command = "fcitx5"; notification = false; }
-        { command = "xrandr --display DP-4 --primary"; notification = false; }
       ];
       keybindings = 
         let
           modifier = config.xsession.windowManager.i3.config.modifier;
         in lib.mkOptionDefault {
+          # App launcher
           "${modifier}+d" = "exec \"${pkgs.rofi}/bin/rofi -modi drun,run -show drun\"";
+          # Backlight Control
+          "XF86MonBrightnessUp" = "exec brightnessctl s 5%+";
+          "XF86MonBrightnessDown" = "exec brightnessctl s 5%-";
           # Screenshot
           "Print" = "exec flameshot launcher";
           "${modifier}+Shift+Print" = "exec flameshot gui";

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, self, ... }:
 
 {
   imports =
@@ -13,7 +13,7 @@
   sops.secrets = {
     "transmission.json" = {
       format = "binary";
-      sopsFile = ../../secrets/transmission.json;
+      sopsFile = ${self}/secrets/transmission.json;
       owner = "transmission";
       group = "transmission";
     };
@@ -155,4 +155,3 @@
 
   system.stateVersion = "22.05"; # DON'T TOUCH IT
 }
-
