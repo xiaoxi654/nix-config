@@ -1,0 +1,9 @@
+keys:
+  - &het 2BA1854F2870980197D657B2D6EAAB8EA2125AEF
+  - &xiaoxi 0C64DD927CE0DAA5260A0FBCC669B12D088507A7
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json)$
+    key_groups:
+      - pgp:
+          - *het
+          - *xiaoxi

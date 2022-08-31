@@ -10,6 +10,15 @@
       ./hardware-configuration.nix
     ];
 
+  sops.secrets = {
+    "transmission.json" = {
+      format = "binary";
+      sopsFile = ../../secrets/transmission.json;
+      owner = "transmission";
+      group = "transmission";
+    };
+  };
+
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''
@@ -135,9 +144,12 @@
       enable = true;
       openPeerPorts = true;
       openRPCPort = true;
-      rpc-port = 21001;
-      peer-port = 21020;
-      rpc-bind-address = "0.0.0.0";
+      settings ={
+        rpc-port = 21001;
+        peer-port = 21020;
+        rpc-bind-address = "0.0.0.0";
+      };
+      credentialsFile = "/run/secrets/transmission.json";
     };
   };
 
