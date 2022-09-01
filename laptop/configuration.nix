@@ -56,11 +56,18 @@
     };
   };
 
-  services.openssh = {
-    enable = true;
-    passwordAuthentication = false;
-    kbdInteractiveAuthentication = false;
-    permitRootLogin = "no";
+  services = {
+    openssh = {
+      enable = true;
+      passwordAuthentication = false;
+      kbdInteractiveAuthentication = false;
+      permitRootLogin = "no";
+    };
+    dbus.packages = [
+      pkgs.gnome.gnome-keyring
+      pkgs.gcr
+      pkgs.dconf
+    ];
   };
 
   programs = {
@@ -70,6 +77,8 @@
       enableSSHSupport = true;
       pinentryFlavor = "gnome3";
     };
+    light.enable = true;
+    dconf.enable = true;
   };
 
   time.timeZone = "Asia/Shanghai";
@@ -82,14 +91,6 @@
       "zh_CN.UTF-8/UTF-8"
     ];
   };
-
-  programs.light.enable = true;
-  programs.dconf.enable = true;
-  services.dbus.packages = [
-    pkgs.gnome.gnome-keyring
-    pkgs.gcr
-    pkgs.dconf
-  ];
 
   users.users.xiaoxi = {
     isNormalUser = true;

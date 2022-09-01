@@ -10,6 +10,7 @@
     discord
     spotify-tui
     teamspeak_client
+    jetbrains.idea-ultimate
     rnix-lsp
     polymc
     lutris
