@@ -17,14 +17,17 @@
           tappingDragLock = true;
         };
       };
-      displayManager.sddm = {
-        enable = true;
-        theme = "${(pkgs.fetchFromGitHub {
-          owner = "MarianArlt";
-          repo = "sddm-chili";
-          rev = "6516d50176c3b34df29003726ef9708813d06271";
-          sha256 = "sha256-wxWsdRGC59YzDcSopDRzxg8TfjjmA3LHrdWjepTuzgw=";
-        })}";
+      displayManager = {
+        sessionCommands = "xrandr --output DP-4 --primary";
+        sddm = {
+          enable = true;
+          theme = "${(pkgs.fetchFromGitHub {
+            owner = "MarianArlt";
+            repo = "sddm-chili";
+            rev = "6516d50176c3b34df29003726ef9708813d06271";
+            sha256 = "sha256-wxWsdRGC59YzDcSopDRzxg8TfjjmA3LHrdWjepTuzgw=";
+          })}";
+        };
       };
       windowManager.i3 = {
         enable = true;

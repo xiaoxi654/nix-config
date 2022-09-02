@@ -9,5 +9,6 @@
     htop
     file
     nix-top
+    pulseaudio  # For pactl
   ];
 }
