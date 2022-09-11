@@ -2,20 +2,31 @@
 
 {
   home.packages = with pkgs; [
+    # Tools
     neofetch
     rclone
-    tdesktop
     obs-studio
-    element-desktop
-    discord
-    spotify-tui
-    teamspeak_client
+    # IM/Voice Chat
+    tdesktop            # Telegram
+    element-desktop     # Matrix
+    discord             # Discord
+    mumble              # Mumble
+    teamspeak_client    # Teamspeak3
+    profanity           # XMPP
+    # DEV/DOC
     jetbrains.idea-ultimate
+    wpsoffice-cn
     rnix-lsp
-    polymc
+    # Games
+    polymc              # Minecraft Launcher
     lutris
-    mangohud
-    osu-lazer-appimage
+    mangohud            # Kinda like a tool?
+    gamemode            # Yep
+    osu-lazer-appimage  # OSU!Lazer
+    heroic-appimage     # EGL
+    # Others
+    spotify-tui
+    # NUR
     nur.repos.xddxdd.dingtalk
     nur.repos.linyinfeng.icalingua-plus-plus
     nur.repos.linyinfeng.wemeet
