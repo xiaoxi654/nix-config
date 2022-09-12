@@ -6,6 +6,8 @@
     neofetch
     rclone
     obs-studio
+    wineWowPackages.staging
+    winetricks
     # IM/Voice Chat
     tdesktop            # Telegram
     element-desktop     # Matrix
