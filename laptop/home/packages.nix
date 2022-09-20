@@ -29,7 +29,6 @@
     # Others
     spotify-tui
     # NUR
-    nur.repos.xddxdd.dingtalk
     nur.repos.linyinfeng.icalingua-plus-plus
     nur.repos.linyinfeng.wemeet
   ];

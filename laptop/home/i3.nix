@@ -1,5 +1,12 @@
 { pkgs, lib, config, ... }:
 
+let 
+  murasame = pkgs.fetchurl {
+    url = "https://srv.xiaoxi654.xyz/murasame.png";
+    name = "murasame.png";
+    sha256 = "c3bcd84a67559d5a83c53d3d68b927be7d8ce1d265788a41bfbb104616d2720b";
+  };
+in
 {
   systemd.user.targets.tray = {
     Unit = {
@@ -13,7 +20,7 @@
       modifier = "Mod4";
       terminal = "alacritty";
       startup = [
-        { command = "feh --bg-scale ~/Pictures/Wallpaper/murasame.png"; notification = false; }
+        { command = "feh --bg-scale ${murasame}"; notification = false; }
         { command = "fcitx5"; notification = false; }
       ];
       keybindings = 
@@ -22,6 +29,8 @@
         in lib.mkOptionDefault {
           # App launcher
           "${modifier}+d" = "exec \"${pkgs.rofi}/bin/rofi -modi drun,run -show drun\"";
+          # Screen Lock
+          "${modifier}+l" = "exec i3lock";
           # Volume Control
           "XF86AudioMicMute" = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle";
           "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle";

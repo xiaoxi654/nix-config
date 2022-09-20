@@ -38,7 +38,7 @@
         het = {
           sshUser = "xiaoxi";
           user = "root";
-          hostname = "lu.c-3.moe";
+          hostname = "storage.xiaoxi654.xyz";
           sshOpts = [ "-p" "21000" ];
           magicRollback = false;
           profiles.system = {
