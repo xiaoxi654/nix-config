@@ -10,5 +10,6 @@
     file
     nix-top
     pulseaudio  # For pactl
+    stdenv.cc.cc.lib
   ];
 }
