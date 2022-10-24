@@ -20,7 +20,7 @@
     wpsoffice-cn
     rnix-lsp
     # Games
-    polymc              # Minecraft Launcher
+    prismlauncher       # Minecraft Launcher
     lutris
     mangohud            # Kinda like a tool?
     gamemode            # Yep
