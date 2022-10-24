@@ -25,7 +25,6 @@
     mangohud            # Kinda like a tool?
     gamemode            # Yep
     osu-lazer-appimage  # OSU!Lazer
-    heroic-appimage     # EGL
     # Others
     spotify-tui
     # NUR
