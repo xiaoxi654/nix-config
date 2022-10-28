@@ -25,6 +25,7 @@
     mangohud            # Kinda like a tool?
     gamemode            # Yep
     osu-lazer-appimage  # OSU!Lazer
+    yuzu-early-access   # NS Emulator
     # Others
     spotify-tui
     # NUR
