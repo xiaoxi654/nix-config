@@ -60,7 +60,7 @@
         ];
         ipv6.addresses = [
           {
-            address = "2605:6400:c6fe:110::1";
+            address = "2605:6400:c6ec:110::1";
             prefixLength = 64;
           }
         ];
@@ -71,7 +71,7 @@
       interface = "ens19";
     };
     defaultGateway6 = {
-      address = "2605:6400:c6fe::1";
+      address = "2605:6400:c6ec::1";
       interface = "ens19";
     };
     nameservers = [
