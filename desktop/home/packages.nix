@@ -10,7 +10,7 @@
     spotify-tui
     teamspeak_client
     rnix-lsp
-    polymc
+    prismlauncher
     lutris
     osu-lazer-appimage
     nur.repos.linyinfeng.icalingua-plus-plus
