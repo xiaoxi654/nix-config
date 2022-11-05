@@ -27,6 +27,10 @@
         "nix.enableLanguageServer" = true;
       };
     };
+    ssh = {
+      enable = true;
+      serverAliveInterval = 30;
+    };
     rbw = {
       enable = true;
       settings = {
