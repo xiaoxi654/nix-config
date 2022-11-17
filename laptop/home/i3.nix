@@ -23,10 +23,26 @@ in
         { command = "feh --bg-scale ${murasame}"; notification = false; }
         { command = "fcitx5"; notification = false; }
       ];
+      modes = 
+        let 
+          modifier = config.xsession.windowManager.i3.config.modifier;
+        in lib.mkOptionDefault {
+          move = {
+            "${modifier}+Tab" = "focus right";
+            "Left" = "move left";
+            "Down" = "move down";
+            "Up" = "move up";
+            "Right" = "move right";
+            "Return" = "mode default";
+            "Escape" = "mode default";
+          };
+        };
       keybindings = 
         let
           modifier = config.xsession.windowManager.i3.config.modifier;
         in lib.mkOptionDefault {
+          # Mode move
+          "${modifier}+m" = "mode move";
           # App launcher
           "${modifier}+d" = "exec \"${pkgs.rofi}/bin/rofi -modi drun,run -show drun\"";
           # Screen Lock
