@@ -69,7 +69,6 @@ in
     enable = true;
     activeOpacity = 1.0;
     backend = "glx";
-    experimentalBackends = true;
     settings = {
       frame-opacity = 0.8;
       inactive-opacity-override = false;
