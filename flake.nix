@@ -28,7 +28,6 @@
 
   outputs = inputs@{ self, nixpkgs, deploy-rs, ... }: {
     nixosConfigurations = {
-      desktop = import ./desktop { system = "x86_64-linux"; inherit nixpkgs inputs; };
       laptop = import ./laptop { system = "x86_64-linux"; inherit nixpkgs inputs; };
       wsl = import ./wsl { system = "x86_64-linux"; inherit nixpkgs inputs; };
       het = import ./server/het { system = "x86_64-linux"; inherit nixpkgs inputs; };
