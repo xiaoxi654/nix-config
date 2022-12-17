@@ -31,5 +31,6 @@
       enable = true;
       serverAliveInterval = 30;
     };
+    bash.enable = true;
   };
 }
