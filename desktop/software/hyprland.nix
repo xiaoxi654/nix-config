@@ -8,7 +8,9 @@
   };
   services.xserver = {
     enable = true;
-    displayManager.gdm.enable = true;
+    # wtf, fcitx5 can't work with this.
+    # displayManager.gdm.enable = true;
+    displayManager.lightdm.enable = true;
   };
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "nvidia";
@@ -16,7 +18,6 @@
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDER_LIBRARY_NAME = "nvidia";
     WLR_NO_HARDWARE_CURSORS = "1";
-    GDK_BACKEND = "wayland,x11";
     NIXOS_OZONE_WL = "1";
   };
   environment.systemPackages = with pkgs; [
@@ -25,5 +26,7 @@
     waybar
     dunst
     slurp
+    swaybg
+    pavucontrol
   ];
 }

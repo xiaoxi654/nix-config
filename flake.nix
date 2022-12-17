@@ -4,9 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nur.url = "github:nix-community/NUR";
-    # Temp disable for fix
-    #hyprland.url = "github:hyprwm/Hyprland";
-    hyprland.url = "github:fufexan/Hyprland/nix-stuff";
+    hyprland.url = "github:hyprwm/Hyprland";
     xiaoxi-repo = {
       url = "github:xiaoxi654/nix-packages";
       inputs.nixpkgs.follows = "nixpkgs";

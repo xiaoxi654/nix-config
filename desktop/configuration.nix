@@ -4,7 +4,12 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.xiaoxi = import ./home.nix;
+    users.xiaoxi = {
+      imports = [
+        ./home.nix
+        inputs.hyprland.homeManagerModules.default
+      ];
+    };
   };
 
   nixpkgs = {
@@ -12,6 +17,14 @@
     overlays = [
       inputs.nur.overlay
       (import "${inputs.xiaoxi-repo}/overlay.nix")
+      (final: prev: {
+        waybar = prev.waybar.overrideAttrs (old: {
+          patchPhase = ''
+            sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp
+          '';
+          mesonFlags = old.mesonFlags ++ [ "-Dexperimental=true" ];
+        });
+      })
     ];
   };
 
@@ -89,6 +102,11 @@
     ];
     description = "Kanae Yoshida";
     home = "/home/xiaoxi";
+  };
+
+  security.sudo = {
+    enable = true;
+    wheelNeedsPassword = false;
   };
 
   programs = {

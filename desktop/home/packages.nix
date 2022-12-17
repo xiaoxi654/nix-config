@@ -22,6 +22,7 @@
     # Games
     prismlauncher       # Minecraft Launcher
     lutris
+    gamescope
     mangohud            # Kinda like a tool?
     gamemode            # Yep
     osu-lazer-appimage  # OSU!Lazer

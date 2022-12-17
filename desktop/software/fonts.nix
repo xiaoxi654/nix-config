@@ -12,6 +12,8 @@
       wqy_zenhei
       jetbrains-mono
       font-awesome
+      fira-code-symbols
+      nerdfonts
     ];
     fontconfig = {
       enable = true;
