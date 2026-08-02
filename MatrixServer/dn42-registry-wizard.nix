@@ -29,20 +29,17 @@ in
         description = "Pull DN42 Registry Repo";
         wantedBy = [ "multi-user.target" ];
         preStart = ''
-          cp ${config.sops.secrets.dn42_registry_ssh_key.path} /tmp/dn42-registry-id_ed25519
-          chmod 600 /tmp/dn42-registry-id_ed25519
           if [ ! -d "${repoPath}/.git" ]; then
             echo "Repository not found, cloning..."
             mkdir -p "${repoPath}"
-            ${pkgs.git}/bin/git -c core.sshCommand="${pkgs.openssh}/bin/ssh -i /tmp/dn42-registry-id_ed25519 -o StrictHostKeyChecking=no" clone "${repoUrl}" "${repoPath}"
+            ${pkgs.git}/bin/git -c core.sshCommand="${pkgs.openssh}/bin/ssh -i ${config.sops.secrets.dn42_registry_ssh_key.path} -o StrictHostKeyChecking=no" clone "${repoUrl}" "${repoPath}"
           fi
         '';
         script = ''
           cd "${repoPath}"
-          ${pkgs.git}/bin/git -c core.sshCommand="${pkgs.openssh}/bin/ssh -i /tmp/dn42-registry-id_ed25519 -o StrictHostKeyChecking=no" fetch --all --prune
+          ${pkgs.git}/bin/git -c core.sshCommand="${pkgs.openssh}/bin/ssh -i ${config.sops.secrets.dn42_registry_ssh_key.path} -o StrictHostKeyChecking=no" fetch --all --prune
           ${pkgs.git}/bin/git reset --hard origin/master
           ${pkgs.git}/bin/git clean -fdx
-          rm -f /tmp/dn42-registry-id_ed25519
           ${pkgs.procps}/bin/pkill -f -SIGUSR1 dn42-registry-wizard
         '';
         serviceConfig = {
