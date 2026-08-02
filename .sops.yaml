@@ -1,0 +1,10 @@
+keys:
+  - &admin_wsl age1nat5ljvsqc2xlkzdaqdt8cens3e38c7j5fjxdcq8sjl8uh0px9qsjpe24h
+  - &matrix_server age1tdmxh36lc3797urgsqmnm2krrarzpyc9gmms9wvw3wcc6fplwqhsrw3mln
+
+creation_rules:
+  - path_regex: MatrixServer/secrets/.*\.ya?ml$
+    key_groups:
+      - age:
+          - *admin_wsl
+          - *matrix_server
