@@ -28,18 +28,17 @@ in
       "dn42-registry-update" = {
         description = "Pull DN42 Registry Repo";
         wantedBy = [ "multi-user.target" ];
-        preStart = ''
+        script = ''
           if [ ! -d "${repoPath}/.git" ]; then
             echo "Repository not found, cloning..."
             mkdir -p "${repoPath}"
             ${pkgs.git}/bin/git -c core.sshCommand="${pkgs.openssh}/bin/ssh -i ${config.sops.secrets.dn42_registry_ssh_key.path} -o StrictHostKeyChecking=no" clone "${repoUrl}" "${repoPath}"
+          else
+            cd "${repoPath}"
+            ${pkgs.git}/bin/git -c core.sshCommand="${pkgs.openssh}/bin/ssh -i ${config.sops.secrets.dn42_registry_ssh_key.path} -o StrictHostKeyChecking=no" fetch --all --prune
+            ${pkgs.git}/bin/git reset --hard origin/master
+            ${pkgs.git}/bin/git clean -fdx
           fi
-        '';
-        script = ''
-          cd "${repoPath}"
-          ${pkgs.git}/bin/git -c core.sshCommand="${pkgs.openssh}/bin/ssh -i ${config.sops.secrets.dn42_registry_ssh_key.path} -o StrictHostKeyChecking=no" fetch --all --prune
-          ${pkgs.git}/bin/git reset --hard origin/master
-          ${pkgs.git}/bin/git clean -fdx
           ${pkgs.procps}/bin/pkill -f -SIGUSR1 dn42-registry-wizard
         '';
         serviceConfig = {
