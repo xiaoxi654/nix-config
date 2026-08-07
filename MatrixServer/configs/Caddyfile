@@ -54,3 +54,8 @@ ygg.xiaoxi654.dn42 {
 	import tls_disable_tlsalpn
 	reverse_proxy 127.0.0.1:8001
 }
+
+http://ygg.xiaoxi654.dn42 {
+	import bind_addresses
+	reverse_proxy 127.0.0.1:8001
+}

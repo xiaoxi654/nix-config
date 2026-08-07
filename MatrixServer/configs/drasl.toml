@@ -1,5 +1,7 @@
 Domain = "ygg.xiaoxi654.dn42"
 BaseURL = "https://ygg.xiaoxi654.dn42"
+InstanceName = "Izumi Network Drasl"
+ApplicationOwner = "Izumi Network"
 ListenAddress = "127.0.0.1:8001"
 DefaultAdmins = [ "xiaoxi654@outlook.com" ]
 AllowPasswordLogin = false

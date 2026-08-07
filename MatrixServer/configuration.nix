@@ -4,6 +4,7 @@
   imports =
     [
       ./hardware-configuration.nix
+      ./java-ca.nix
       ./matrix-server.nix
       ./dn42-registry-wizard.nix
       ./caddy.nix
@@ -30,6 +31,7 @@
     vim
     wget
     curl
+    screen
   ];
 
   programs.mtr.enable = true;
@@ -40,6 +42,7 @@
     22
     80
     443
+    25565
   ];
   networking.firewall.allowedUDPPorts = [
     80
@@ -72,4 +75,3 @@
   system.stateVersion = "25.11";
 
 }
-
