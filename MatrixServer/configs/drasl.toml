@@ -10,9 +10,17 @@ AllowPasswordLogin = false
 Allow = true
 
 [[RegistrationOIDC]]
-Name = "dn42"
+Name = "oauth.dn42"
 Issuer = "https://oauth.dn42"
 ClientID = "c8073f70009afa3511f673bfcd0315d8"
+RequireInvite = false
+PKCE = true
+AllowChoosingPlayerName = true
+
+[[RegistrationOIDC]]
+Name = "kioubit.auth"
+Issuer = "https://dn42.g-load.eu"
+ClientID = "86ecbf0b-e20b-4620-8d28-c90c05664730"
 RequireInvite = false
 PKCE = true
 AllowChoosingPlayerName = true
