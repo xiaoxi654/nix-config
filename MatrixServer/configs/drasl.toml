@@ -1,5 +1,5 @@
-Domain = "ygg.xiaoxi654.dn42"
-BaseURL = "https://ygg.xiaoxi654.dn42"
+Domain = "yggdrasil.dn42"
+BaseURL = "https://yggdrasil.dn42"
 InstanceName = "Izumi Network Drasl"
 ApplicationOwner = "Izumi Network"
 ListenAddress = "127.0.0.1:8001"
@@ -20,7 +20,7 @@ AllowChoosingPlayerName = true
 [[RegistrationOIDC]]
 Name = "kioubit.auth"
 Issuer = "https://dn42.g-load.eu"
-ClientID = "86ecbf0b-e20b-4620-8d28-c90c05664730"
+ClientID = "0c0bab61-4f49-434f-b139-525df89ec092"
 RequireInvite = false
 PKCE = true
 AllowChoosingPlayerName = true
