@@ -71,7 +71,7 @@
 
   services.qemuGuest.enable = true;
 
-  # DO NOT TOUCH THIS OPTION UNLESS YOU KNOW WHAT YOU ARE DOING!
+  # DO NOT TOUCH THIS OPTION UNLESS YOU KNOW WHAT ARE YOU DOING!
   system.stateVersion = "25.11";
 
 }
