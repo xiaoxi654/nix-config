@@ -18,6 +18,7 @@
     experimental-features = [ "nix-command" "flakes" ];
     trusted-users = [ "xiaoxi" ];
   };
+  security.sudo.wheelNeedsPassword = false;
 
   networking.hostName = "izuminet-ham";
   networking.useNetworkd = true;
