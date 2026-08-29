@@ -14,23 +14,38 @@
 	};
 
 	outputs = { self, nixpkgs, deploy-rs, sops-nix }@inputs: {
-		nixosConfigurations."MatrixServer" = nixpkgs.lib.nixosSystem {
-			system = "x86_64-linux";
-			modules = [
-				./MatrixServer/configuration.nix
-				sops-nix.nixosModules.sops
-			];
+		nixosConfigurations = {
+			"MatrixServer" = nixpkgs.lib.nixosSystem {
+				system = "x86_64-linux";
+				modules = [
+					./MatrixServer/configuration.nix
+					sops-nix.nixosModules.sops
+				];
+			};
+			"amprnet-server" = nixpkgs.lib.nixosSystem {
+				system = "x86_64-linux";
+				modules = [
+					./amprnet-server/configuration.nix
+					sops-nix.nixosModules.sops
+				];
+			};
 		};
 
 		deploy = {
 			sshUser = "xiaoxi";
 			user = "root";
-			fastConnection = true;
+			# fastConnection = true;
 			nodes = {
 				"MatrixServer" = {
 					hostname = "matrix.xiaoxi654.dn42";
 					profiles.system = {
 						path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations."MatrixServer";
+					};
+				};
+				"amprnet-server" = {
+					hostname = "bg2gla.izm.im";
+					profiles.system = {
+						path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations."amprnet-server";
 					};
 				};
 			};
