@@ -8,6 +8,9 @@
   imports =
     [
       ./hardware-configuration.nix
+      ./caddy.nix
+      ./wavelog.nix
+      ./mariadb.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -67,4 +70,3 @@
   system.stateVersion = "26.05";
 
 }
-

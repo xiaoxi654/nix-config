@@ -1,0 +1,23 @@
+wavelog.izm.im {
+	root * /var/lib/wavelog
+	encode zstd gzip
+
+	route {
+		# The application directory contains config, and must never be served.
+		@internal {
+			path /application
+			path /application/*
+		}
+		respond @internal 403
+
+		# Never serve dotfiles, except the ACME challenge path handled by Caddy.
+		@hidden {
+			path_regexp ^/\..*
+			not path /.well-known/*
+		}
+		respond @hidden 403
+
+		php_fastcgi unix//run/phpfpm/wavelog.sock
+		file_server
+	}
+}
