@@ -11,6 +11,7 @@
       ./caddy.nix
       ./wavelog.nix
       ./mariadb.nix
+      ./thelounge.nix
     ];
 
   boot.loader.systemd-boot.enable = true;

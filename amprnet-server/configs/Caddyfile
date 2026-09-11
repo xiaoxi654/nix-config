@@ -21,3 +21,8 @@ wavelog.izm.im {
 		file_server
 	}
 }
+
+irc.izm.im {
+	reverse_proxy http://127.0.0.1:9000
+	encode zstd gzip
+}
