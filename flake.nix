@@ -34,16 +34,17 @@
 		deploy = {
 			sshUser = "xiaoxi";
 			user = "root";
-			# fastConnection = true;
 			nodes = {
 				"MatrixServer" = {
 					hostname = "matrix.xiaoxi654.dn42";
+					fastConnection = true;
 					profiles.system = {
 						path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations."MatrixServer";
 					};
 				};
 				"amprnet-server" = {
 					hostname = "bg2gla.izm.im";
+					magicRollback = false;
 					profiles.system = {
 						path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations."amprnet-server";
 					};
