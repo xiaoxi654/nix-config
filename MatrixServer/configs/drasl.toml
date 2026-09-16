@@ -24,3 +24,11 @@ ClientID = "0c0bab61-4f49-434f-b139-525df89ec092"
 RequireInvite = false
 PKCE = true
 AllowChoosingPlayerName = true
+
+[[RegistrationOIDC]]
+Name = "HExpnet.WebAuth"
+Issuer = "https://auth42.hexpnet.work"
+ClientID = "uS85Y0dJPFgSVHaS"
+RequireInvite = false
+PKCE = true
+AllowChoosingPlayerName = true

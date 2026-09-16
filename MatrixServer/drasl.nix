@@ -7,11 +7,13 @@ let
   oidcClientSecretNames = {
     "oauth.dn42" = "drasl_oidc_client_secret_iedon";
     "kioubit.auth" = "drasl_oidc_client_secret_kioubit";
+    "HExpnet.WebAuth" = "drasl_oidc_client_secret_hexp";
   };
 in
 {
   sops.secrets.drasl_oidc_client_secret_iedon = { };
   sops.secrets.drasl_oidc_client_secret_kioubit = { };
+  sops.secrets.drasl_oidc_client_secret_hexp = { } ;
 
   services.drasl = {
     enable = true;
