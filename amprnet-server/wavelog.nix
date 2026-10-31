@@ -55,13 +55,13 @@ in
       "catch_workers_output" = "yes";
     };
 
-    phpOptions = ''
-      memory_limit = 256M;
-      upload_max_filesize = 64M;
-      post_max_size = 64M;
-      max_execution_time = 600;
-      expose_php = Off;
-      mysqli.default_socket = /run/mysqld/mysqld.sock;
-    '';
+    phpOptions = {
+      "memory_limit" = "256M";
+      "upload_max_filesize" = "64M";
+      "post_max_size" = "64M";
+      "max_execution_time" = "600";
+      "expose_php" = "Off";
+      "mysqli.default_socket" = "/run/mysqld/mysqld.sock";
+    };
   };
 }
