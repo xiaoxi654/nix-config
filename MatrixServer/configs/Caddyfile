@@ -59,3 +59,59 @@ http://yggdrasil.dn42 {
 	import bind_addresses
 	reverse_proxy 127.0.0.1:8001
 }
+
+th.xiaoxi654.dn42 {
+	import bind_addresses
+	import tls_disable_tlsalpn
+
+	# 联机 Relay：房间、信令、旁观。独立 handle 避免 try_files 干扰 Upgrade。
+	handle /eagler-netplay/* {
+		reverse_proxy 127.0.0.1:18142 {
+			header_up X-Real-IP {remote_host}
+		}
+	}
+
+	# 状态页数据（可选）。不部署 telemetry 时删除这两个 handle。
+	handle /uptime/summary {
+		reverse_proxy 127.0.0.1:18153
+	}
+	handle /netplay-stats/* {
+		reverse_proxy 127.0.0.1:18153
+	}
+
+	handle {
+		root * /srv/eagler-touhou/current
+		encode zstd gzip
+
+		# 浏览器按 MIME 决定是否执行 WASM 与 ES 模块。
+		@wasm path *.wasm
+		header @wasm Content-Type application/wasm
+		@mjs path *.mjs
+		header @mjs Content-Type text/javascript
+		@otf path *.otf
+		header @otf Content-Type font/otf
+
+		# 生成路径可作为永久缓存。
+		@runtime path /runtime/*
+		header @runtime Cache-Control "public, max-age=31536000, immutable"
+		@versioned query v=*
+		header @versioned Cache-Control "public, max-age=31536000, immutable"
+
+		# Service Worker 必须每次重新校验。
+		@sw path /app-shell-sw.js /runtime-program-sw.js /legacy-mount-retirement-sw.js
+		header @sw Cache-Control "no-store"
+
+		@audio path *.ogg *.wav
+		header @audio Cache-Control "public, max-age=604800"
+
+		# 入口页面、清单、数据与其余资源每次向服务器确认。
+		@revalidate {
+			not path /runtime/* *.ogg *.wav /app-shell-sw.js /runtime-program-sw.js /legacy-mount-retirement-sw.js
+			not query v=*
+		}
+		header @revalidate Cache-Control "no-cache"
+
+		file_server
+		try_files {path} {path}/ =404
+	}
+}

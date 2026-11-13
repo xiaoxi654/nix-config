@@ -9,6 +9,8 @@
       ./dn42-registry-wizard.nix
       ./caddy.nix
       ./drasl.nix
+      ./eagler-touhou.nix
+      ./eagler-turn.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -48,6 +50,7 @@
     80
     443
   ];
+  networking.firewall.allowPing = true;
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
