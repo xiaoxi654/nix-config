@@ -16,6 +16,7 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.configurationLimit = 5;
   time.timeZone = "America/Vancouver";
   i18n.defaultLocale = "en_US.UTF-8";
   nix.settings = {
