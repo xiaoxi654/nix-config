@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  draslToml = lib.importTOML ./configs/drasl.toml;
+  draslToml = lib.importTOML ../configs/drasl.toml;
 
   # Maps each OIDC provider name to its sops-encrypted client secret.
   oidcClientSecretNames = {

@@ -4,14 +4,14 @@
   imports =
     [
       ./hardware-configuration.nix
-      ./java-ca.nix
-      ./matrix-server.nix
-      ./dn42-registry-wizard.nix
-      ./caddy.nix
-      ./mail.nix
-      ./drasl.nix
-      ./eagler-touhou.nix
-      ./eagler-turn.nix
+      ./modules/java-ca.nix
+      ./modules/matrix-server.nix
+      ./modules/dn42-registry-wizard.nix
+      ./modules/caddy.nix
+      ./modules/mail.nix
+      ./modules/drasl.nix
+      ./modules/eagler-touhou.nix
+      ./modules/eagler-turn.nix
     ];
 
   boot.loader.systemd-boot.enable = true;

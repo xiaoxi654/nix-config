@@ -38,7 +38,7 @@ let
 in
 {
   sops.secrets.mail_xiaoxi_passwd = {
-    sopsFile = ./secrets/mail.yaml;
+    sopsFile = ../secrets/mail.yaml;
     owner = "dovecot2";
     group = "dovecot2";
     mode = "0400";
@@ -46,7 +46,7 @@ in
   };
 
   sops.secrets.mail_dkim_private_key = {
-    sopsFile = ./secrets/mail.yaml;
+    sopsFile = ../secrets/mail.yaml;
     owner = "opendkim";
     group = "opendkim";
     mode = "0400";

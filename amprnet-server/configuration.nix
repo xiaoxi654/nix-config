@@ -8,10 +8,10 @@
   imports =
     [
       ./hardware-configuration.nix
-      ./caddy.nix
-      ./wavelog.nix
-      ./mariadb.nix
-      ./thelounge.nix
+      ./modules/caddy.nix
+      ./modules/wavelog.nix
+      ./modules/mariadb.nix
+      ./modules/thelounge.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
