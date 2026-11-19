@@ -66,8 +66,13 @@
   security.pki.certificateFiles = [ "${pkgs.dn42-cacert}/etc/ssl/certs/dn42-ca.crt" ];
 
   # sops-nix: decrypt secrets at activation using the target host key.
+  # useSystemdActivation installs secrets from sops-install-secrets.service
+  # (sysinit) instead of the activation script; restartUnits/reloadUnits then
+  # call systemctl directly. The activation-script path is deprecated
+  # (WARN) and removed in NixOS 26.11.
   sops.defaultSopsFile = ./secrets/secrets.yaml;
   sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  sops.useSystemdActivation = true;
 
   security.sudo.wheelNeedsPassword = false;
 
