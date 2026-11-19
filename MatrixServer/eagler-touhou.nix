@@ -35,7 +35,7 @@ in
       EAGLER_NETPLAY_RELAY_PORT = "18142";
       EAGLER_NETPLAY_GAMEPLAY_RELAY_FALLBACK = "0";
       EAGLER_NETPLAY_TRUSTED_PROXIES = "127.0.0.1";
-      EAGLER_NETPLAY_STUN_URLS = "stun:stun.cloudflare.com:3478";
+      EAGLER_NETPLAY_STUN_URLS = "stun:turn.xiaoxi654.dn42:3478";
       EAGLER_NETPLAY_PUBLIC_NICKNAMES = "0";
 
       # 启用 TURN：密钥由 sops 通过 EnvironmentFile 注入。
