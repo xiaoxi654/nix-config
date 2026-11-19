@@ -26,6 +26,15 @@ let
     /@xiaoxi654\.dn42$/ lmtp:unix:/run/dovecot2/lmtp
     /@([^.@ ]+\.)*dn42$/ smtp:
   '';
+
+  dkimSelector = "mail";
+  dkimMilterSocket = "inet:8891@127.0.0.1";
+  dkimMilterTarget = "inet:127.0.0.1:8891";
+  dkimKeyPath = "/var/lib/opendkim/keys";
+  dkimPrivateKey = config.sops.secrets.mail_dkim_private_key.path;
+  # DKIM public key, published as TXT at mail._domainkey.xiaoxi654.dn42 in the dn42 zone.
+  # The opendkim preStart below verifies the deployed private key against this value.
+  dkimPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3ILBib0Fx9Ag+vMwMmmzNhQC3DXULy4s0A8/4dRasVnf07c+R7Z1J8HKv97n6JifCIcJ00w+lHgFJV60/v1ylhkSiRJ4cFbac5qWc7SdZ0u8gT4o74iIhd/WDuXMU3e3INp/+WF2p3fzgIVSldbR9PWkK+37J0vnbPLj61edJlwO/A4wlEKTAcJzjmfqV0Aw7kwmqLp++a/Dxfi8Gpg74ww/CORJLl+2pOrCJCS1Wf2GsvQw7XKiCIV97ENuUFPXtYLhiwjypuSAKbpbOl+Po3dhIJbMs++Vxp0IZOvHFFYTYCtxQM2t0izH53i8gVEFSQ99a4iitl9MQIJo0bz8/wIDAQAB";
 in
 {
   sops.secrets.mail_xiaoxi_passwd = {
@@ -34,6 +43,14 @@ in
     group = "dovecot2";
     mode = "0400";
     restartUnits = [ "dovecot.service" "postfix.service" ];
+  };
+
+  sops.secrets.mail_dkim_private_key = {
+    sopsFile = ./secrets/mail.yaml;
+    owner = "opendkim";
+    group = "opendkim";
+    mode = "0400";
+    restartUnits = [ "opendkim.service" ];
   };
 
   security.acme.acceptTerms = true;
@@ -107,6 +124,12 @@ in
       smtpd_sasl_local_domain = domain;
       smtpd_sender_login_maps = [ "hash:/etc/postfix/sender_login" ];
 
+      # DKIM signing via the opendkim milter
+      smtpd_milters = dkimMilterTarget;
+      non_smtpd_milters = dkimMilterTarget;
+      milter_default_action = "accept";
+      milter_protocol = "6";
+
       smtpd_tls_chain_files = [
         "${certificateDirectory}/key.pem"
         "${certificateDirectory}/fullchain.pem"
@@ -127,6 +150,29 @@ in
       dn42_only = "check_recipient_access regexp:/etc/postfix/recipient_access, reject";
     };
   };
+
+  services.opendkim = {
+    enable = true;
+    domains = "csl:${domain}";
+    selector = dkimSelector;
+    keyPath = dkimKeyPath;
+    # inet socket instead of the module default unix socket: the module's
+    # UMask=0077 makes the unix socket unreadable for postfix
+    socket = dkimMilterSocket;
+  };
+
+  # Install the DKIM private key (base64-wrapped PEM from sops) before the
+  # module's auto-generation check runs, and verify it matches the public key
+  # committed in mail.nix.
+  systemd.services.opendkim.preStart = lib.mkBefore ''
+    umask 0077
+    ${pkgs.coreutils}/bin/base64 -d ${dkimPrivateKey} > ${dkimKeyPath}/${dkimSelector}.private
+    actual=$(${pkgs.openssl}/bin/openssl rsa -in ${dkimKeyPath}/${dkimSelector}.private -pubout -outform DER 2>/dev/null | ${pkgs.coreutils}/bin/base64 -w0)
+    if [ "$actual" != '${dkimPublicKey}' ]; then
+      echo "mail: sops secret mail_dkim_private_key does not match dkimPublicKey in mail.nix" >&2
+      exit 1
+    fi
+  '';
 
   services.dovecot2 = {
     enable = true;
@@ -203,11 +249,12 @@ in
   };
 
   systemd.services.postfix = {
-    wants = [ "acme-${mailHost}.service" ];
+    wants = [ "acme-${mailHost}.service" "opendkim.service" ];
     requires = [ "dovecot.service" ];
     after = [
       "acme-${mailHost}.service"
       "dovecot.service"
+      "opendkim.service"
     ];
   };
 
