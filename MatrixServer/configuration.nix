@@ -8,6 +8,7 @@
       ./matrix-server.nix
       ./dn42-registry-wizard.nix
       ./caddy.nix
+      ./mail.nix
       ./drasl.nix
       ./eagler-touhou.nix
       ./eagler-turn.nix

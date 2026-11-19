@@ -15,6 +15,17 @@
 	}
 }
 
+(acme_http01) {
+	handle /.well-known/acme-challenge/* {
+		reverse_proxy 127.0.0.1:8402
+	}
+}
+
+http://mail.xiaoxi654.dn42 {
+	import bind_addresses
+	import acme_http01
+}
+
 pbh.xiaoxi654.dn42 {
 	import bind_addresses
 	tls {
