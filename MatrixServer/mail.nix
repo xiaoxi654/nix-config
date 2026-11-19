@@ -75,6 +75,7 @@ in
       smtpd_client_restrictions = "permit_sasl_authenticated,reject";
       smtpd_sender_restrictions = "reject_sender_login_mismatch";
       smtpd_recipient_restrictions = "dn42_only";
+      smtpd_relay_restrictions = "dn42_only";
     };
 
     settings.main = {
