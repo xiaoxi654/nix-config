@@ -36,7 +36,7 @@ in
     user = wavelogUser;
     group = wavelogUser;
 
-    phpPackage = pkgs.php83.withExtensions ({ enabled, all }:
+    phpPackage = pkgs.php85.withExtensions ({ enabled, all }:
       enabled
       ++ map (name: all.${name})
         (builtins.filter (name: !(builtins.elem name enabled)) extraPhpExtensions)

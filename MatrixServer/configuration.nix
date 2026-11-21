@@ -27,6 +27,10 @@
   users.users.xiaoxi = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINnQzm0m6//bLp280evhqpKpiZzId73nCvFYfxWorgvh xiaoxi@DESKTOP-DGBCL6B"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGFwjywVaKzp0NAzG9azWjif1dZu6KXHQjQUA3Aw5uGT laptop_gentoo"
+    ];
   };
 
   # List packages installed in system profile.
@@ -39,7 +43,13 @@
   ];
 
   programs.mtr.enable = true;
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+    };
+  };
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
