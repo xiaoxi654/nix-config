@@ -2,6 +2,7 @@ keys:
   - &admin_wsl ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINnQzm0m6//bLp280evhqpKpiZzId73nCvFYfxWorgvh xiaoxi@DESKTOP-DGBCL6B
   - &matrix_server age1tdmxh36lc3797urgsqmnm2krrarzpyc9gmms9wvw3wcc6fplwqhsrw3mln
   - &laptop_gentoo ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGFwjywVaKzp0NAzG9azWjif1dZu6KXHQjQUA3Aw5uGT laptop_gentoo
+  - &amprnet_server age1d5n2uezc9myexltrdl04sghkghzpdsf6xjlc4c64u5ddrs39hvdqrla2k4
 
 creation_rules:
   - path_regex: MatrixServer/secrets/.*\.ya?ml$
@@ -10,3 +11,9 @@ creation_rules:
           - *admin_wsl
           - *matrix_server
           - *laptop_gentoo
+  - path_regex: amprnet-server/secrets/.*\.ya?ml$
+    key_groups:
+      - age:
+          - *admin_wsl
+          - *laptop_gentoo
+          - *amprnet_server
