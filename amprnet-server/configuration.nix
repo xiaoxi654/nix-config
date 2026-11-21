@@ -46,8 +46,21 @@
   users.users.xiaoxi = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
-    hashedPassword = "$y$j9T$Pc9hSozhdMbHVf4d7Ccom1$A6dtgKqVcy.SUVQ7P1FjCIj/2mxGzokmlRWP9JMx842";
+    hashedPasswordFile = config.sops.secrets.xiaoxi_passwd.path;
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGFwjywVaKzp0NAzG9azWjif1dZu6KXHQjQUA3Aw5uGT" ];
+  };
+
+  # sops-nix: decrypt secrets at activation using the target host key
+  # (same setup as MatrixServer; systemd activation avoids the
+  # deprecated activation-script path).
+  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  sops.useSystemdActivation = true;
+
+  # xiaoxi's Argon2id password hash, previously committed in plaintext
+  # here. neededForUsers decrypts it before users are created.
+  sops.secrets.xiaoxi_passwd = {
+    sopsFile = ./secrets/passwd.yaml;
+    neededForUsers = true;
   };
 
   environment.systemPackages = with pkgs; [
